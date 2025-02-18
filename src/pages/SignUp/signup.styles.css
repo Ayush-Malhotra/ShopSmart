@@ -1,0 +1,72 @@
+.signup {
+  width: 40%;
+  margin: 100px auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.title {
+  color: green;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-align: left;
+}
+
+.input-card {
+  display: flex;
+  flex-direction: column;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border: 2px solid blue !important;
+  font-size: 1rem;
+  padding-left: 10px;
+}
+
+/* input, */
+select,
+textarea {
+  width: 80%;
+  height: 40px;
+  font-size: 1rem;
+  margin: auto;
+  padding-left: 10px;
+}
+select {
+  width: 83% !important;
+}
+label {
+  width: 82.5%;
+  height: 20px;
+  margin: auto;
+}
+
+.submit-btn {
+  width: 30%;
+  margin: auto;
+  padding: 15px 30px;
+  background-color: green;
+  color: white;
+  font-weight: 500;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.errors {
+  color: red;
+  width: 80%;
+  margin: auto;
+}

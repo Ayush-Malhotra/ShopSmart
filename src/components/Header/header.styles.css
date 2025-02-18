@@ -1,0 +1,16 @@
+.heading {
+  width: 100%;
+  box-shadow: 10px 2px 8px gray;
+  display: flex;
+  padding: 10px 40px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  background-color: white;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 25px;
+}

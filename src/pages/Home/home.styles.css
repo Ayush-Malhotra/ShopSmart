@@ -1,0 +1,55 @@
+.home-page {
+  /* display: flex; */
+  margin-top: 50px;
+  /* height: 120vh; */
+}
+
+.left-side {
+  width: 13%;
+  text-align: left;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-list {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-left: 11%;
+}
+
+button {
+  background-color: brown;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  padding: 5px 10px;
+  margin: 10px 8px;
+  cursor: pointer;
+}
+
+.search-btn {
+  padding: 3px 3px;
+  border-radius: 3px;
+  background-color: rgb(222, 215, 215);
+  color: black;
+  font-size: 0.9rem;
+}
+
+.search-input {
+  width: 70%;
+}
+
+.search-input:hover {
+  width: 70%;
+}
+
+.price-input {
+  width: 35%;
+  margin-right: 5%;
+}

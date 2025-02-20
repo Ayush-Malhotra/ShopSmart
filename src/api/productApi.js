@@ -5,17 +5,60 @@ const api = axios.create({
 });
 
 export const getAllProducts = () => {
-  return api.get("/products");
+  try {
+    return api.get("/products");
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const getAllCategories = () => {
-  return api.get("/categories");
+  try {
+    return api.get("/categories");
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const addFilters = (id) => {
-  return api.get(`/products/?categoryId=${id}`);
+  try {
+    return api.get(`/products/?categoryId=${id}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const addPriceFilters = (filterItems) => {
+  try {
+    const { title, categoryId, min_price, max_price } = filterItems;
+    return api.get(
+      `/products/?title=${title}&price_min=${min_price}&price_max=${max_price}&categoryId=${categoryId}`
+    );
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const getProductByTitle = (title) => {
-  return api.get(`/products/?title=${title}`);
+  try {
+    return api.get(`/products/?title=${title}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const productDetail = (id) => {
+  try {
+    return api.get(`/products/${id}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const productByCategory = (id) => {
+  try {
+    return api.get(`/products/?categoryId=${id}&offset=1&limit=4`);
+  } catch (err) {
+    console.log(err);
+  }
 };

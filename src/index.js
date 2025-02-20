@@ -12,6 +12,8 @@ import {
   RouterProvider,
   Route,
 } from "react-router-dom";
+import Product from "./pages/Product";
+import Cart from "./pages/Cart";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,17 +21,19 @@ const router = createBrowserRouter(
       <Route path="" element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
+      <Route path=":id" element={<Product />} />
+      <Route path="cart" element={<Cart />} />
     </Route>
   )
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router}>
-      <App />
-    </RouterProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <RouterProvider router={router}>
+    <App />
+  </RouterProvider>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

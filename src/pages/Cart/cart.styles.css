@@ -1,0 +1,14 @@
+.cart-page {
+  margin-top: 60px;
+  min-height: 85vh;
+}
+
+.product-list2 {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+  /* margin-left: 13%; */
+  margin-bottom: 10px;
+}

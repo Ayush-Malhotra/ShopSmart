@@ -1,38 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
+import { addPriceFilters } from "../../api/productApi";
+import { Slider } from "antd";
+function PriceFilter({ filterItems, setFilterItems, setProducts, setLoader }) {
+  const onChange = async (e) => {
+    try {
+      console.log(e);
+      const value = e;
 
-function PriceFiter() {
-  const [price, setPrice] = useState({
-    minPrice: 0,
-    maxPrice: 500,
-  });
+      setFilterItems({
+        ...filterItems,
+        min_price: value[0],
+        max_price: value[1],
+      });
 
-  const onChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setPrice({ ...price, [name]: value });
+      setLoader(true);
+      const res = await addPriceFilters(filterItems);
+      setProducts(res.data);
+      setLoader(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <div>
       <div>Price Range</div>
-      <input
-        type="number"
-        name="minPrice"
-        className="price-input"
-        value={price.minPrice}
+      <Slider
+        included={true}
+        range="true"
+        defaultValue={[100, 300]}
+        value={[filterItems.min_price, filterItems.max_price]}
+        min={0}
+        max={1000}
         onChange={onChange}
       />
-      <input
-        type="number"
-        name="maxPrice"
-        className="price-input"
-        value={price.maxPrice}
-        onChange={onChange}
-      />
-      <button onClick={handleClick}>Apply PriceFiter</button>
+      {/* <button onClick={handleClick}>Apply PriceFiter</button> */}
+      <div>
+        Rs. {filterItems.min_price} - Rs. {filterItems.max_price}
+      </div>
     </div>
   );
 }
 
-export default PriceFiter;
+export default PriceFilter;

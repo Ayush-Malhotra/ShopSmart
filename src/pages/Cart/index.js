@@ -6,15 +6,22 @@ function Cart() {
   const [data2, setData] = useState([]);
   const [products, setProducts] = useState([]);
 
+  // const getProductData = () => {};
   const getProductsById = async () => {
-    let resArray = await Promise.all(
-      data2.map(async (ids) => {
-        let res = await productDetail(ids);
-        return res.data;
-      })
-    );
-    console.log(resArray);
-    setProducts(resArray);
+    if (data2) {
+      let resArray = await Promise.all(
+        data2.map(async (ids) => {
+          try {
+            let res = await productDetail(ids);
+            return res.data;
+          } catch (err) {
+            console.log(err);
+          }
+        })
+      );
+      console.log(resArray);
+      setProducts(resArray);
+    }
   };
 
   useEffect(() => {
@@ -25,15 +32,22 @@ function Cart() {
 
   useEffect(() => {
     getProductsById();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data2]);
+
   return (
     <div className="cart-page">
-      <div>Cart</div>
+      <div className="cart-title">YOUR CART PRODUCTS</div>
       <div className="product-list2">
-        {products?.length > 0 &&
+        {products?.length > 0 ? (
           products.map((product) => {
-            return <ProductCard key={product.id} product={product} />;
-          })}
+            if (product?.id)
+              return <ProductCard key={product.id} product={product} />;
+            return <></>;
+          })
+        ) : (
+          <div className="no-product">Your Cart is Empty</div>
+        )}
       </div>
     </div>
   );

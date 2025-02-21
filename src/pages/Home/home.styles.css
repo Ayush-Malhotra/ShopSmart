@@ -1,76 +1,37 @@
-.home-page {
-  display: flex;
-  margin-top: 50px;
-  min-height: 90vh;
-}
-
-.left-side {
-  width: 13%;
+.home {
+  margin-top: 52px;
+  min-height: 87vh;
   text-align: left;
-  padding: 10px;
-  top: 40px;
-  position: fixed;
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
-.product-list {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: 15px;
-  width: 100%;
-  margin-left: 13%;
-  margin-bottom: 10px;
+.home-title {
+  padding-left: 10px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgb(201, 63, 28);
 }
-
-/* button {
-  background-color: brown;
-  color: white;
-  font-size: 1.2rem;
-  border: none;
-  padding: 5px 10px;
-  margin: 10px 8px;
-  cursor: pointer;
-} */
-
-.search-btn {
-  padding: 3px 3px;
-  border-radius: 3px;
-  background-color: rgb(222, 215, 215);
-  color: black;
-  font-size: 0.9rem;
-}
-
-.search-input {
-  width: 70%;
-}
-
-.search-input:hover {
-  width: 70%;
-}
-
-.price-input {
-  width: 35%;
-  margin-right: 5%;
-}
-
-.search {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.no-product {
-  font-size: 1.4rem;
-  color: red;
-}
-
-.loader {
-  width: 85vh;
-  display: flex;
+.landing-images {
+  /* width: 800px; */
+  display: flex !important;
+  height: 70vh;
   align-items: center;
   justify-content: center;
+  background-color: rgb(195, 211, 232);
+  /* object-fit: cover; */
+}
+
+.landing-img {
+  width: 40%;
+}
+
+.landing-img2 {
+  margin: auto;
+  width: 50% !important;
+  height: 50% !important;
+}
+
+.landing-title {
+  width: 30%;
+  font-size: 2rem;
+  font-weight: 500;
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { addPriceFilters } from "../../api/productApi";
-// import { useDebounce } from "use-debounce";
-import { Search } from "lucide-react";
+
 import Input from "antd/es/input/Input";
 function SearchFilter({ filterItems, setFilterItems, setProducts, setLoader }) {
   const f1 = async () => {
@@ -40,20 +39,20 @@ function SearchFilter({ filterItems, setFilterItems, setProducts, setLoader }) {
   useEffect(() => {
     console.log("Debounced:", filterItems.title);
     f1();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounceValue]);
+
   return (
     <div className="search">
       <Input
         type="search"
         enterButton="true"
         size="small"
+        placeholder="search your product"
         onChange={async (e) => {
           setFilterItems({ ...filterItems, title: e.target.value });
         }}
       />
-      {/* <button onClick={handleSearch} className="search-btn"> */}
-      <Search size={17} />
-      {/* </button> */}
     </div>
   );
 }

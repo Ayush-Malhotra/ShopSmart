@@ -14,14 +14,16 @@ import {
 } from "react-router-dom";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
+import AllProducts from "./pages/AllProducts";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Home />} />
+      <Route path="products" element={<AllProducts />}></Route>
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
-      <Route path=":id" element={<Product />} />
+      <Route path="products/:id" element={<Product />} />
       <Route path="cart" element={<Cart />} />
     </Route>
   )

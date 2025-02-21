@@ -10,16 +10,14 @@ function ProductCard({ product }) {
     // product-list
 
     <div className="product-card">
-      <Link to={`/${id}`}>
+      <Link to={`/products/${id}`}>
         <div className="product-image">
           <img src={imageUrl} alt="product-image" width={100} height={100} />
         </div>
         <div className="product-title">{title}</div>
         <div className="price">
-          <span>Rs.{price} </span>
-          <span className="actual-price">
-            Rs.{price + Math.floor(price / 4)}
-          </span>
+          <div>Rs.{price} </div>
+          <div className="actual-price">Rs.{price + Math.floor(price / 4)}</div>
         </div>
       </Link>
     </div>

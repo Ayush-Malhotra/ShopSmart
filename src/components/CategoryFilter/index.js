@@ -19,7 +19,7 @@ function CategoryFilter({
 
   return (
     <div>
-      <div>Category</div>
+      <div className="product-title2">CATEGORY</div>
       {categories?.length > 0 &&
         categories.map((category) => (
           <div key={category.id}>

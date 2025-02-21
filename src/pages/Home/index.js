@@ -1,138 +1,130 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
 import "./home.styles.css";
-import {
-  getAllCategories,
-  getAllProducts,
-  addPriceFilters,
-} from "../../api/productApi";
-import ProductCard from "../../components/ProductCard";
-import CategoryFilter from "../../components/CategoryFilter";
-import PriceFilter from "../../components/PriceFilter";
-import SearchFilter from "../../components/SearchFilter";
-import { LoadingOutlined } from "@ant-design/icons";
-
+import { Carousel } from "antd";
+import CategoryProduct from "../../components/CategoryProducts";
+import { getAllCategories } from "../../api/productApi";
+import { Link } from "react-router-dom";
 function Home() {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState();
-  const [loader, setLoader] = useState(true);
-  const [page, setPage] = useState(1);
-  const [filterItems, setFilterItems] = useState({
-    title: ``,
-    categoryId: ``,
-    min_price: 0,
-    max_price: 1000,
-  });
-
-  const allProducts = async () => {
-    try {
-      const res = await getAllProducts();
-      console.log(res);
-
-      setProducts(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-    setLoader(false);
-  };
+  const [category, setCategory] = useState([]);
+  const [loading] = useState(false);
 
   const allCategories = async () => {
-    try {
-      const res = await getAllCategories();
-      console.log(res.data);
-      setCategories(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+    let res = await getAllCategories();
+    setCategory(res.data);
   };
-
   useEffect(() => {
     allCategories();
-    allProducts();
   }, []);
-
-  const handleClick = async () => {
-    setLoader(true);
-    const res = await addPriceFilters(filterItems);
-    setProducts(res.data);
-    setLoader(false);
-  };
-  useEffect(() => {
-    setPage(1);
-  }, [filterItems]);
   return (
-    <>
-      <section className="home-page">
-        <div className="left-side">
-          <div>Filters</div>
-          <SearchFilter
-            filterItems={filterItems}
-            setFilterItems={setFilterItems}
-            setProducts={setProducts}
-            setLoader={setLoader}
-          />
-          <CategoryFilter
-            categories={categories}
-            filterItems={filterItems}
-            setFilterItems={setFilterItems}
-            setProducts={setProducts}
-            setLoader={setLoader}
-          />
-          <PriceFilter
-            filterItems={filterItems}
-            setFilterItems={setFilterItems}
-            setProducts={setProducts}
-            setLoader={setLoader}
-          />
-        </div>
-        <div className="product-list">
-          {loader ? (
-            <div className="loader">
-              <LoadingOutlined
-                spin="true"
-                twoToneColor="[#414ba6]"
-                style={{ fontSize: "40px", color: "#08c" }}
+    <div className="home">
+      {/* <div className="home-title">Welcome To ShopSmart ! </div> */}
+      <Carousel autoplay autoplaySpeed={4000} style={{ marginBottom: 30 }}>
+        <Link to="/products/31">
+          <div className="landing-images">
+            <div className="landing-title">
+              <div>Modern Elegance Teal ArmChair</div>
+              <div style={{ fontSize: 15, fontWeight: 100 }}>Furniture</div>
+            </div>
+            <div className="landing-img">
+              <img
+                src="https://i.imgur.com/6wkyyIN.jpeg"
+                alt="watch"
+                height={100}
+                width={100}
+                className="landing-img2"
               />
             </div>
-          ) : products?.length > 0 ? (
-            products.map((product, index) => {
-              if (
-                product.images[0].includes("https://i.imgur.com") &&
-                index >= (page - 1) * 12 &&
-                index < page * 12
-              ) {
-                return <ProductCard key={product.id} product={product} />;
-              }
-              return "";
-            })
-          ) : (
-            <div className="no-product">No Products Available</div>
-          )}
+          </div>
+        </Link>
+        <Link to="/products/27">
+          <div className="landing-images">
+            <div className="landing-title">
+              <div>Sleek SmartWatch with Vibrant Display</div>
+              <div style={{ fontSize: 15, fontWeight: 100 }}>Electronics</div>
+            </div>
+            <div className="landing-img">
+              <img
+                src="https://i.imgur.com/LGk9Jn2.jpeg"
+                alt="watch"
+                height={100}
+                width={100}
+                className="landing-img2"
+              />
+            </div>
+          </div>
+        </Link>
+        <Link to="/products/44">
+          <div className="landing-images">
+            <div className="landing-title">
+              <div>Classic Blue Casual Shoes</div>
+              <div style={{ fontSize: 15, fontWeight: 100 }}>Shoes</div>
+            </div>
+            <div className="landing-img">
+              <img
+                src="https://i.imgur.com/sC0ztOB.jpeg"
+                alt="watch"
+                height={100}
+                width={100}
+                className="landing-img2"
+              />
+            </div>
+          </div>
+        </Link>
+        <Link to="/products/47">
+          <div className="landing-images">
+            <div className="landing-title">
+              <div>Radiant Cirtus Perfume </div>
+              <div style={{ fontSize: 15, fontWeight: 100 }}>Beauty</div>
+            </div>
+            <div className="landing-img">
+              <img
+                src="https://i.imgur.com/xPDwUb3.jpg"
+                alt="watch"
+                height={100}
+                width={100}
+                className="landing-img2"
+              />
+            </div>
+          </div>
+        </Link>
+        {/* <div className="landing-images">
+          <img
+            src="https://i.imgur.com/LGk9Jn2.jpeg"
+            alt="watch"
+            className="landing-img"
+          />
         </div>
-      </section>
-      <Button
-        type="primary"
-        disabled={page === 1 ? true : false}
-        onClick={() => setPage(page - 1)}
-      >
-        Prev
-      </Button>
-      Page {page} of{" "}
-      {Math.floor(products.length / 12) + (products.length % 12 !== 0)}
-      <Button
-        type="primary"
-        onClick={() => setPage(page + 1)}
-        disabled={
-          page ===
-            Math.floor(products.length / 12) + (products.length % 12 !== 0) ||
-          products.length == 0
-            ? true
-            : false
-        }
-      >
-        Next
-      </Button>
-    </>
+        <div className="landing-images">
+          <img
+            src="https://i.imgur.com/sC0ztOB.jpeg"
+            alt="watch"
+            className="landing-img"
+          />
+        </div>
+        <div className="landing-images">
+          <img
+            src="https://i.imgur.com/xPDwUb3.jpg"
+            alt="watch"
+            className="landing-img"
+          />
+        </div> */}
+      </Carousel>
+      <div>
+        {loading ? (
+          <></>
+        ) : (
+          <div>
+            {category.map((cat) => {
+              return (
+                <div>
+                  <CategoryProduct category={cat} />
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

@@ -3,6 +3,10 @@
   min-height: 85vh;
 }
 
+.cart-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
 .product-list2 {
   display: flex;
   justify-content: space-evenly;

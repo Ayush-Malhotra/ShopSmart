@@ -14,7 +14,11 @@ function PriceFilter({ filterItems, setFilterItems, setProducts, setLoader }) {
       });
 
       setLoader(true);
-      const res = await addPriceFilters(filterItems);
+      const res = await addPriceFilters({
+        ...filterItems,
+        min_price: value[0],
+        max_price: value[1],
+      });
       setProducts(res.data);
       setLoader(false);
     } catch (err) {
@@ -24,7 +28,7 @@ function PriceFilter({ filterItems, setFilterItems, setProducts, setLoader }) {
 
   return (
     <div>
-      <div>Price Range</div>
+      <div className="product-title2">PRICE</div>
       <Slider
         included={true}
         range="true"

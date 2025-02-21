@@ -3,6 +3,10 @@
   /* height: 100vh; */
 }
 
+* {
+  padding: 0;
+  margin: 0;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -41,12 +45,21 @@
 a {
   text-decoration: none;
   color: black;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 300;
 }
-
+a:hover {
+  color: black;
+}
 .footer {
   /* position: sticky;
   bottom: 0px; */
-  background-color: aquamarine;
-  height: 50px;
+  margin-top: 25px;
+  background-color: rgb(19, 77, 236);
+  height: 80px;
+  color: white;
+  padding: 5px 40px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }

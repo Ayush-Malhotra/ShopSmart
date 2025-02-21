@@ -4,14 +4,20 @@
   display: flex;
   padding: 10px 40px;
   justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
   position: fixed;
   top: 0;
   background-color: white;
   z-index: 2;
+  font-size: 1.2rem;
+  font-weight: 500 !important;
 }
 
+a {
+  font-weight: 500 !important;
+}
 .nav-bar {
   display: flex;
-  gap: 25px;
+  gap: 20px;
 }

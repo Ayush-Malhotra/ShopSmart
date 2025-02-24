@@ -29,14 +29,15 @@ export function validate(name, value, tempError) {
       ...tempError,
       [name]: isEmail(value) ? "" : "Invaid email address",
     };
-  } else if (name === "password") {
-    tempError = {
-      ...tempError,
-      [name]: isPassword(value)
-        ? ""
-        : "Password must have atleast 8 chars , 1 sp. char and 1 digit.",
-    };
   }
+  // else if (name === "password") {
+  //   tempError = {
+  //     ...tempError,
+  //     [name]: isPassword(value)
+  //       ? ""
+  //       : "Password must have atleast 8 chars , 1 sp. char and 1 digit.",
+  //   };
+  // }
   return tempError;
 }
 

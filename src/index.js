@@ -1,4 +1,5 @@
 import React from "react";
+
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
@@ -6,6 +7,8 @@ import reportWebVitals from "./reportWebVitals";
 import Home from "./pages/Home";
 import Signup from "./pages/SignUp";
 import Login from "./pages/Login";
+import "@ant-design/v5-patch-for-react-19";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,

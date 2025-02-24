@@ -62,3 +62,42 @@ export const productByCategory = (id) => {
     console.log(err);
   }
 };
+
+export const createUser = (userdetails) => {
+  try {
+    console.log(userdetails);
+    return api.post("/users/", userdetails, {
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getTokens = (userLogin) => {
+  try {
+    const res = api.post("/auth/login", userLogin);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const includeAuth = (tokens) => {
+  api.interceptors.request.use(
+    async (config) => {
+      const token = tokens.access_token;
+      if (token) {
+        console.log("hello");
+        config.headers["Authorization"] = ` bearer ${token}`;
+        console.log(config.headers["Authorization"]);
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+};

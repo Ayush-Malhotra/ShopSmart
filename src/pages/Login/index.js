@@ -1,8 +1,8 @@
 import { Button, Input } from "antd";
+import "./login.styles.css";
 import React, { useContext, useState } from "react";
 import { createSession, getTokens, includeAuth } from "../../api/productApi";
 import LoginContext from "../../context/LoginContext";
-import "./login.styles.css";
 
 function Login() {
   const [userLogin, setUserLogin] = useState({
@@ -30,13 +30,9 @@ function Login() {
   };
 
   return (
-    <div className="login-page">
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <form onSubmit={handleSubmit}>
+    <div className="login2">
+      <div className="login-title">Login</div>
+      <form onSubmit={handleSubmit} className="form">
         <label>Email</label>
         <Input
           type="email"
@@ -51,7 +47,9 @@ function Login() {
           value={userLogin.password}
           onChange={onChange}
         />
-        <button type="submit">Login</button>
+        <Button type="primary" htmlType="submit" className="login-btn">
+          Login
+        </Button>
       </form>
     </div>
   );

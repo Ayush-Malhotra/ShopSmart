@@ -46,3 +46,16 @@
 .label {
   padding-left: 1%;
 }
+
+.login-link {
+  width: 50%;
+  margin-left: 5px;
+  display: inline;
+  font-size: 1rem;
+  color: blue;
+}
+
+.login-link:hover {
+  opacity: 0.8;
+  color: blue;
+}

@@ -4,6 +4,7 @@ import CustomInput from "../../components/Input";
 import { validate, requiredValidate } from "../../utils/helper";
 import { Button } from "antd";
 import { createUser } from "../../api/productApi";
+import { Link } from "react-router-dom";
 function Signup() {
   let [userData, setUserData] = useState({
     name: "",
@@ -117,6 +118,14 @@ function Signup() {
           REGISTER
         </Button>
       </form>
+      <div style={{ marginTop: 50 }}>
+        <span>Already a user?</span>
+        <span>
+          <Link to="/login" className="login-link">
+            login
+          </Link>
+        </span>
+      </div>
     </div>
   );
 }

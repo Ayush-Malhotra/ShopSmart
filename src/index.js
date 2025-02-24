@@ -18,6 +18,7 @@ import {
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import AllProducts from "./pages/AllProducts";
+import UserProfile from "./pages/UserProfile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
       <Route path="signup" element={<Signup />} />
       <Route path="products/:id" element={<Product />} />
       <Route path="cart" element={<Cart />} />
+      <Route path="/profile" element={<UserProfile />} />
     </Route>
   )
 );

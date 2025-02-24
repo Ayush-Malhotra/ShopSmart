@@ -85,19 +85,29 @@ export const getTokens = (userLogin) => {
   }
 };
 
-export const includeAuth = (tokens) => {
-  api.interceptors.request.use(
-    async (config) => {
-      const token = tokens.access_token;
-      if (token) {
-        console.log("hello");
-        config.headers["Authorization"] = ` bearer ${token}`;
-        console.log(config.headers["Authorization"]);
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
+const privateApi = axios.create({
+  baseURL: "https://api.escuelajs.co/api/v1",
+  headers: {
+    Authorization: "",
+  },
+});
+privateApi.interceptors.request.use(
+  async (config) => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      config.headers["Authorization"] = ` bearer ${token}`;
+      console.log(config.headers["Authorization"]);
     }
-  );
+    return config;
+  },
+  (error) => {
+    console.log("NO");
+    return Promise.reject(error);
+  }
+);
+
+export const createSession = (details) => {
+  return privateApi.get("/auth/profile", {
+    Authorization: `Bearer ${details}`,
+  });
 };

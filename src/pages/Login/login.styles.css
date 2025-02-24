@@ -13,7 +13,9 @@
   font-size: 1.5rem;
   font-weight: 500;
 }
-
+.login-page {
+  height: 80vh;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -27,4 +29,12 @@
 .login-btn {
   width: 30%;
   margin: auto;
+}
+
+.logout-page {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
 }

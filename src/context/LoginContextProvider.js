@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import LoginContext from "./LoginContext";
 
 function LoginContextProvider({ children }) {
-  const [tokens, setTokens] = useState();
+  const [user, setUser] = useState({});
   return (
-    <LoginContext.Provider value={{ tokens, setTokens }}>
+    <LoginContext.Provider value={{ user, setUser }}>
       {children}
     </LoginContext.Provider>
   );

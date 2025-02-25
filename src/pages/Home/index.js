@@ -4,13 +4,19 @@ import { Carousel } from "antd";
 import CategoryProduct from "../../components/CategoryProducts";
 import { getAllCategories } from "../../api/productApi";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 function Home() {
   const [category, setCategory] = useState([]);
   const [loading] = useState(false);
 
   const allCategories = async () => {
-    let res = await getAllCategories();
-    setCategory(res.data);
+    try {
+      let res = await getAllCategories();
+      setCategory(res.data);
+    } catch (err) {
+      console.log(err);
+      toast.error("Network Error Occured! , Please Check Network");
+    }
   };
   useEffect(() => {
     allCategories();

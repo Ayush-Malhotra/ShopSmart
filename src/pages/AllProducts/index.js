@@ -7,7 +7,7 @@ import CategoryFilter from "../../components/CategoryFilter";
 import PriceFilter from "../../components/PriceFilter";
 import SearchFilter from "../../components/SearchFilter";
 import { LoadingOutlined } from "@ant-design/icons";
-
+import { toast } from "react-toastify";
 function AllProducts() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState();
@@ -38,6 +38,7 @@ function AllProducts() {
       console.log(res.data);
       setCategories(res.data);
     } catch (err) {
+      toast.error("Network Error Occured! , Please Check Network");
       console.log(err);
     }
   };

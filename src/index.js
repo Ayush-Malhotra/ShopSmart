@@ -19,6 +19,7 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import AllProducts from "./pages/AllProducts";
 import UserProfile from "./pages/UserProfile";
+import "react-toastify/ReactToastify.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

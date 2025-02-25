@@ -3,10 +3,14 @@ import "./signup.styles.css";
 import CustomInput from "../../components/Input";
 import { validate, requiredValidate } from "../../utils/helper";
 import { Button } from "antd";
-import { createUser } from "../../api/productApi";
-import { Link } from "react-router-dom";
+import { createUser, getTokens, createSession } from "../../api/productApi";
+import { Link, useNavigate } from "react-router-dom";
+import LoginContext from "../../context/LoginContext";
+import { useContext } from "react";
+import { PoweroffOutlined } from "@ant-design/icons";
+import { toast, ToastContainer } from "react-toastify";
 function Signup() {
-  let [userData, setUserData] = useState({
+  const [userData, setUserData] = useState({
     name: "",
     email: "",
     password: "",
@@ -14,7 +18,11 @@ function Signup() {
     avatar: "https://picsum.photos/800",
   });
 
-  let [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const [errors, setErrors] = useState({});
+  const { setUser } = useContext(LoginContext);
+  const navigate = useNavigate();
 
   function onChange(e) {
     const name = e.target.name;
@@ -27,6 +35,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     console.log("My Data", userData);
     let tempError = { ...errors };
     console.log(tempError.name === "");
@@ -44,14 +53,32 @@ function Signup() {
       if (tempError[key] !== "") {
         alert(`Form is incorrectly filled`);
         console.log("Error Occured");
+        setLoading(false);
         return;
       }
     }
-
-    const res = await createUser(userData);
-    console.log(res, res.data);
-    alert(`Form is successfully submitted by ${userData.name}`);
-    console.log("data submitted", userData);
+    try {
+      const res = await createUser(userData);
+      console.log(res, res.data);
+      toast.success(`Welcome to ShopSmart! ${userData.name} `);
+      console.log("data submitted", userData);
+      const res2 = await getTokens({
+        email: userData.email,
+        password: userData.password,
+      });
+      console.log("response : ", res2);
+      localStorage.setItem("access_token", res2.data.access_token);
+      localStorage.setItem("refresh_token", res2.data.refresh_token);
+      let userSession = await createSession(res2.data.access_token);
+      setUser(userSession.data);
+      toast.success(`You have successfully logged in!`);
+      console.log(userSession);
+      navigate("/login");
+    } catch (err) {
+      toast.error("Wrond details. Please try Again");
+      console.log("error occured", err);
+    }
+    setLoading(false);
   };
 
   // useEffect(() => {
@@ -114,6 +141,7 @@ function Signup() {
           // className="submit-btn"
           // classNames="submit-btn"
           size="large"
+          loading={loading}
         >
           REGISTER
         </Button>
@@ -126,6 +154,7 @@ function Signup() {
           </Link>
         </span>
       </div>
+      {/* <ToastContainer /> */}
     </div>
   );
 }

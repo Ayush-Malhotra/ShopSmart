@@ -5,12 +5,17 @@ import { createSession, getTokens } from "../../api/productApi";
 import LoginContext from "../../context/LoginContext";
 import CustomInput from "../../components/Input";
 import { validate } from "../../utils/helper";
-
+import { useNavigate } from "react-router-dom";
+import { PoweroffOutlined } from "@ant-design/icons";
+import { toast, ToastContainer } from "react-toastify";
 function Login() {
   const [userLogin, setUserLogin] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [userInvalid, setUserInvalid] = useState(false);
   const { user, setUser } = useContext(LoginContext);
@@ -29,10 +34,14 @@ function Login() {
     setUser({});
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
+    toast("You have successfully logged out!", {
+      type: "success",
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await getTokens(userLogin);
       console.log("response : ", res);
@@ -42,10 +51,16 @@ function Login() {
       setUser(userSession.data);
       setUserInvalid(false);
       console.log(userSession);
-      // navigate("/profile");
+      setLoading(false);
+
+      navigate("/");
+      toast("You have successfully logged in!", {
+        type: "success",
+      });
     } catch (err) {
       console.log("err", err);
       if (err.status === 401) {
+        setLoading(false);
         setUserInvalid(true);
       }
       console.log("User failed to Login");
@@ -79,7 +94,12 @@ function Login() {
               value={userLogin.password}
               error={errors?.password}
             />
-            <Button type="primary" htmlType="submit" size="large">
+            <Button
+              type="primary"
+              htmlType="submit"
+              size="large"
+              loading={loading}
+            >
               Login
             </Button>
           </form>

@@ -75,7 +75,7 @@ function Signup() {
       console.log(userSession);
       navigate("/login");
     } catch (err) {
-      toast.error("Wrond details. Please try Again");
+      toast.error("Wrong details. Please try Again");
       console.log("error occured", err);
     }
     setLoading(false);
